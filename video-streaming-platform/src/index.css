@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@100;200;300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    @apply scroll-smooth;
+  }
+  
+  body {
+    @apply font-sans text-gray-100 bg-cyber-black antialiased;
+    background-image: 
+      linear-gradient(to bottom, rgba(13, 13, 14, 0.85), rgba(13, 13, 14, 0.95)),
+      url('/cyber-grid-bg.svg');
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display font-semibold text-gray-100;
+  }
+
+  ::selection {
+    @apply bg-cyber-pink text-white;
+  }
+}
+
+@layer components {
+  .cyber-container {
+    @apply relative overflow-hidden border border-cyan-400/30 bg-black/70 backdrop-blur-sm;
+    box-shadow: 0 0 10px rgba(0, 180, 252, 0.3);
+  }
+
+  .cyber-card {
+    @apply cyber-container rounded-md;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center px-4 py-2 text-sm font-medium rounded focus:outline-none relative overflow-hidden;
+  }
+  
+  .btn-primary {
+    @apply bg-cyan-600 text-white border border-cyan-400/50 shadow-lg;
+    background: linear-gradient(to bottom, #00b4fc, #0073a3);
+  }
+  
+  .btn-secondary {
+    @apply bg-black text-cyan-400 border border-cyan-400/30;
+  }
+  
+  .btn-danger {
+    @apply bg-pink-600 text-white border border-pink-500/50;
+    background: linear-gradient(to bottom, #f72585, #b5179e);
+  }
+  
+  .input {
+    @apply block w-full px-3 py-2 bg-black/70 border-cyan-400/30 rounded placeholder-gray-500 text-gray-200;
+    @apply focus:ring-2 focus:ring-cyan-400 focus:border-cyan-400;
+  }
+  
+  .label {
+    @apply block text-sm font-medium text-gray-300 mb-1;
+  }
+  
+  .neon-text {
+    @apply text-cyan-400;
+    text-shadow: 0 0 5px #00b4fc, 0 0 10px #00b4fc;
+  }
+
+  .neon-text-pink {
+    @apply text-pink-500;
+    text-shadow: 0 0 5px #f72585, 0 0 10px #f72585;
+  }
+
+  .cyber-border {
+    @apply relative;
+    &::before, &::after {
+      content: '';
+      @apply absolute bg-gradient-to-r from-cyber-blue via-cyber-pink to-cyber-purple;
+    }
+    &::before {
+      @apply h-px w-full left-0 top-0;
+    }
+    &::after {
+      @apply h-full w-px right-0 top-0;
+    }
+  }
+
+  .cyber-grid {
+    background-size: 30px 30px;
+    background-image: 
+      linear-gradient(to right, rgba(0, 180, 252, 0.1) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(0, 180, 252, 0.1) 1px, transparent 1px);
+  }
+
+  .scanline {
+    @apply pointer-events-none fixed inset-0 overflow-hidden;
+    &::before {
+      content: "";
+      @apply absolute left-0 w-full h-px bg-white/10;
+      animation: scanline 6s linear infinite;
+    }
+  }
+}
+
+@keyframes cyber-scan {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes cyber-gradient {
+  0% { background-position: 0% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Animation classes */
+.animate-fadeIn {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.animate-slideUp {
+  animation: slideUp 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+} 
